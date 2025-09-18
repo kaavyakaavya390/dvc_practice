@@ -1,0 +1,16 @@
+stages:
+  split:
+    cmd: python src/split.py data/diamonds.csv data/train.csv data/test.csv
+    deps:
+    - data/diamonds.csv
+    - src/split.py
+    outs:
+    - data/test.csv
+    - data/train.csv
+  train:
+    cmd: python src/train.py data/train.csv models/model.pkl
+    deps:
+    - data/train.csv
+    - src/train.py
+    outs:
+    - models/model.pkl

@@ -1,0 +1,38 @@
+schema: '2.0'
+stages:
+  split:
+    cmd: python src/split.py data/diamonds.csv data/train.csv data/test.csv
+    deps:
+    - path: data/diamonds.csv
+      hash: md5
+      md5: 8d849b8433e710e348ccef9199c93ff1
+      size: 2571858
+    - path: src/split.py
+      hash: md5
+      md5: bbc6fd408a353517fd6eb4e022a83a64
+      size: 644
+    outs:
+    - path: data/test.csv
+      hash: md5
+      md5: d1918631f9bb914d9f8de4f4d1806183
+      size: 514166
+    - path: data/train.csv
+      hash: md5
+      md5: 992dff3d0cabf232b28447284db9ae80
+      size: 2057740
+  train:
+    cmd: python src/train.py data/train.csv models/model.pkl
+    deps:
+    - path: data/train.csv
+      hash: md5
+      md5: 992dff3d0cabf232b28447284db9ae80
+      size: 2057740
+    - path: src/train.py
+      hash: md5
+      md5: 4ed6a7b6f0b69cd462a2bfbf7a1f6fd6
+      size: 703
+    outs:
+    - path: models/model.pkl
+      hash: md5
+      md5: 49f051e5ed2bd1ff15f3b23c6c3d9117
+      size: 1409
